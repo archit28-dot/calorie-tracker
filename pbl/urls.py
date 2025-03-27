@@ -27,4 +27,6 @@ urlpatterns = [
     path('register/', views.register, name='register'),
     path('login/', auth_views.LoginView.as_view(template_name='myapp/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path('weekly-report/', views.weekly_report, name='weekly_report'),   # New weekly report URL
+    path('monthly-report/', views.monthly_report, name='monthly_report'), # New monthly report URL
 ]
