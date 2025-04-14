@@ -18,10 +18,13 @@ from django.contrib import admin
 from django.urls import path
 from myapp import views
 from django.contrib.auth import views as auth_views
+from django.views.generic import TemplateView
+from myapp.views import date_specific_log
+from myapp.views import food_search
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.home, name='home'),
+    path('', TemplateView.as_view(template_name='myapp/home.html'), name='home'),
     path('dashboard/', views.index, name='index'),
     path('delete/<int:id>/', views.delete_consume, name='delete'),
     path('register/', views.register, name='register'),
@@ -29,4 +32,12 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('weekly-report/', views.weekly_report, name='weekly_report'),   # New weekly report URL
     path('monthly-report/', views.monthly_report, name='monthly_report'), # New monthly report URL
-]
+    path('', date_specific_log, name='index'),
+    path('date/<str:selected_date>/', date_specific_log, name='date_log'),
+    path('add_custom_food/', views.add_custom_food, name='add_custom_food'),
+     path('food-search/', food_search, name='food_search'),
+]   
+
+
+    
+
